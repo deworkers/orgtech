@@ -1,13 +1,15 @@
 //переменные
 @font: 'PT Sans', sans-serif;
-@font-title: 'PT Serif', serif;
+@font-title: 'PT Sans', serif;
 @font-alt: 'Trebuchet MS', serif;
 
 @color_white: #fff;
-@color_text: #4d4d4d;
-@color_link: #003777;
-@color_blue: #003777;
-@color_grey: #eaeaea;
+@color_text: #4b4b4b;
+@color_link: #234997;
+@color_blue: #234997;
+@color_grey: #737373;
+@color_orange: #f96806;
+
 
 * {
     box-sizing: border-box;
@@ -45,9 +47,9 @@ img {
 }
 
 p {
-    font-size: 18px;
+    font-size: 16px;
     margin: 0 0 20px 0;
-    line-height: 26px;
+    line-height: 20px;
 }
 
 a {
@@ -72,25 +74,27 @@ a:hover {
 }
 
 h1 {
-    .head(25px, 30px, normal, @color_text);
+    .head(20px, 20px, normal, @color_text);
+    line-height: 24px;
+    text-align: center;
     font-weight: 400;
-    text-transform: uppercase;
 }
 
 h2 {
-    .head(22px, 25px, normal, @color_text);
-}
-
-h3 {
     .head(18px, 20px, normal, @color_text);
 }
 
+h3 {
+    .head(16px, 10px, normal, @color_text);
+    font-weight: 700;
+}
+
 h4 {
-    .head(16px, 15px, normal, @color_text);
+    .head(16px, 10px, normal, @color_text);
 }
 
 h5 {
-    .head(13px, 15px, normal, @color_text);
+    .head(14px, 10px, normal, @color_text);
     font-weight: 700;
 }
 
@@ -131,7 +135,7 @@ ul li, ol li{
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    top: 0;
+    top: 70px;
     left: 0;
     z-index: 10000;
     display: none;
@@ -143,18 +147,15 @@ ul li, ol li{
     left: 50%;
     top: 150px;
     margin-left: -280px;
-    background: #fff;
     padding: 40px 40px;
     display: none;
 }
 
 .modal--fz  {             // во весь экран
     width: 100%;
-    height: 100%;
     position: absolute;
     left: 0;
-    top: 0;
-    background: #fff;
+    top: 0px;
     padding: 0;
     display: none;
     margin: 0;

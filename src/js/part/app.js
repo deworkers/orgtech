@@ -16,8 +16,8 @@ $(document).ready(function() {
 
     /*Модальные окна*/
     var overlay = $('#overlay'); 
-    var open_modal = $('.open_modal'); 
-    var close = $('.modal__close'); 
+    var open_modal = $('.open-modal'); 
+    var close = $('.modal-close'); 
     var modal = $('.modal'); 
 
     // для открытия модалки нужна ссылка вида <a href="#name"></a> и класс "open_modal"
@@ -30,6 +30,9 @@ $(document).ready(function() {
         $(div).fadeIn(400);
         $('html, body').addClass('j-noScroll');
         baseBoxHeight = $('.mobile-menu__right').height();
+        if ( $('.head-phone-more').hasClass('active') ) {
+            contactOpen();
+        }
     });
 
     close.click(function() {
@@ -84,31 +87,48 @@ $(document).ready(function() {
         $(this).addClass('selected');
     });
 
-    /*календарь*/
-    $( ".date input" ).datepicker( $.datepicker.regional[ "ru" ] );
+    var newsSlider = new Swiper('.news-main-slider', {
+        slidesPerView: 'auto',
+        paginationClickable: true,
+        spaceBetween: 5,
+        nextButton: '.news-slider-next',
+        prevButton: '.news-slider-prev',
+    });
 
-    $.datepicker.regional['ru'] = {
-        closeText: 'Закрыть',
-        prevText: '&#x3c;Пред',
-        nextText: 'След&#x3e;',
-        currentText: 'Сегодня',
-        monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
-        'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-        monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
-        'Июл','Авг','Сен','Окт','Ноя','Дек'],
-        dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
-        dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
-        dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-        weekHeader: 'Нед',
-        dateFormat: 'dd.mm.yy',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: ''
-    };
-    $.datepicker.setDefaults($.datepicker.regional['ru']);
+    var contactOpen = function() {
+        $('.head-phone-more').toggleClass('active');
+        $('.head-call').slideToggle();
+    }
 
-    
-    
+    $('.head-phone-more').on('click', function() {
+        contactOpen();
+    });
+
+    $('.head-call__other').on('click', function() {
+        $('.head-call').hide();
+        $('.head-city').show();
+    });
+
+    $('.head-city-one').on('click', function() {
+        thisCity = $(this).data('city');
+        console.log(thisCity);
+        $('.head-bottom-one').hide();
+        $('.'+thisCity).show();
+
+        $('.head-call').show();
+        $('.head-city').hide();
+    });
+
+    $('.about-more').on('click', function() {
+        $('.about-hide').slideToggle();
+        $(this).toggleClass('active');
+
+        if ( $(this).hasClass('active') ) {
+            $(this).find('span').text('Cвернуть');
+        } else {
+            $(this).find('span').text('Читать дальше');
+        }
+    });
+
 
 });
