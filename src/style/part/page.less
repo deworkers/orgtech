@@ -151,7 +151,7 @@ body {
     border-bottom: 4px solid @color_blue;
 
     li {
-        text-align: right;
+        text-align: left;
         margin-bottom: 0;
         a {
             display: block;
@@ -318,9 +318,13 @@ body {
 }
 
 .head-city {
-    //background: #eaeaea;
+    background: #f4f3f2;
     padding: 30px 15px;
     display: none;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    border-bottom: 4px solid @color_blue;
 }
 
 .head-city-one {
@@ -448,11 +452,52 @@ body {
     margin-bottom: 30px;
 }
 
+.project  {
+    overflow: hidden;
+
+    .swiper-button-prev {
+        width: 50px;
+        height: 50px;
+        background: none;
+        top: 100px;
+        left: 0;
+
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            .sprite(@arrow-white);
+            transform: rotate(90deg);
+            top: 17px;
+            left: 10px;
+        }
+    }
+    
+    .swiper-button-next {
+        width: 50px;
+        height: 50px;
+        background: none;
+        top: 100px;
+        right: 0;
+
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            .sprite(@arrow-white);
+            transform: rotate(-90deg);
+            top: 17px;
+            left: 12px;
+        }
+    }
+}
+
 .catalog-one {
     text-decoration: none;
     text-align: center;
     display: block;
     margin-bottom: 20px;
+    width: 100%;
 
     h2 {
         font-size: 32px;
@@ -700,6 +745,8 @@ body {
 
     a {
         color: #fff;
+        display: block;
+        padding: 8px 0;
     }
 }
 

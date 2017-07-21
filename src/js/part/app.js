@@ -30,9 +30,7 @@ $(document).ready(function() {
         $(div).fadeIn(400);
         $('html, body').addClass('j-noScroll');
         baseBoxHeight = $('.mobile-menu__right').height();
-        if ( $('.head-phone-more').hasClass('active') ) {
-            contactOpen();
-        }
+        
     });
 
     close.click(function() {
@@ -96,17 +94,21 @@ $(document).ready(function() {
     });
 
     var contactOpen = function() {
-        $('.head-phone-more').toggleClass('active');
+        //$('.head-phone-more').toggleClass('active');
         $('.head-call').slideToggle();
     }
 
-    $('.head-phone-more').on('click', function() {
+    $('.head-phone').on('click', function() {
         contactOpen();
+        $('.head-city').slideUp();
+        $('.head-phone-more').removeClass('active');
     });
 
-    $('.head-call__other').on('click', function() {
+    $('.head-call__other, .head-phone-more').on('click', function(event) {
+        event.stopPropagation();
         $('.head-call').hide();
-        $('.head-city').show();
+        $('.head-city').slideToggle();
+        $('.head-phone-more').toggleClass('active');
     });
 
     $('.head-city-one').on('click', function() {
@@ -114,9 +116,8 @@ $(document).ready(function() {
         console.log(thisCity);
         $('.head-bottom-one').hide();
         $('.'+thisCity).show();
-
-        $('.head-call').show();
         $('.head-city').hide();
+        $('.head-phone-more').removeClass('active');
     });
 
     $('.about-more').on('click', function() {
@@ -128,6 +129,13 @@ $(document).ready(function() {
         } else {
             $(this).find('span').text('Читать дальше');
         }
+    });
+
+    var swiper = new Swiper('.project', {
+        loop: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30
     });
 
 
