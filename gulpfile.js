@@ -131,16 +131,10 @@ gulp.task('sprite:build', function() {
         gulp.src('src/img/sprite/*.*') // путь, откуда берем картинки для спрайта
             .pipe(spritesmith({
                 imgName: 'sprite.png',
-                imgPath: '../img/sprite.png',
                 cssName: 'sprite.less',
                 cssFormat: 'less',
                 algorithm: 'binary-tree',
-                /*retinaSrcFilter: ['src/img/sprite/2x/*.*'],
-                retinaImgName: 'sprite@2x.png',
-                retinaImgPath: '../img/sprite@2x.png',
-                cssVarMap: function(sprite) {
-                    sprite.name =  sprite.name+'-2x'
-                }*/
+                imgPath: '../img/sprite.png'
             }));
 
     spriteData.img.pipe(gulp.dest('build/img/')); // путь, куда сохраняем картинку
