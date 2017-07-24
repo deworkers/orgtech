@@ -138,5 +138,25 @@ $(document).ready(function() {
         spaceBetween: 30
     });
 
+    var galleryTop = new Swiper('.gallery-top', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 10,
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 1,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        touchRatio: 0.2,
+        slideToClickedSlide: true
+    });
+    galleryTop.params.control = galleryThumbs;
+    galleryThumbs.params.control = galleryTop;
+
+
+    $('.card-tab__title').on('click', function() {
+        $(this).next('.card-tab__body').slideToggle();
+        $(this).toggleClass('active');
+    });
 
 });
