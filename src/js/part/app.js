@@ -159,4 +159,79 @@ $(document).ready(function() {
         $(this).toggleClass('active');
     });
 
+    /*$('.recommend-more').on('click', function() {
+        $(this).hide();
+        $('.recommend-one.hidden').slideDown();
+    });*/
+
+    $('.search-one__title').on('click', function() {
+        $(this).next('').slideToggle();
+        $(this).toggleClass('active');
+    });
+
+    $('.open-filtr').on('click', function() {
+        event.preventDefault();
+        $('#overlay--top').fadeIn(200);
+        $('#filtr').fadeIn(400);
+        $('html, body').addClass('j-noScroll');
+    });
+
+    close.click(function() {
+        $('#overlay--top').fadeOut(200);
+        $('#filtr').fadeOut(200);
+        $('html, body').removeClass('j-noScroll');
+    });
+
+    $('#overlay--top').click(function(event) {
+        if ( $( event.target ).attr('id') == 'overlay--top' ) {
+            $(this).fadeOut(200);
+            $('#filtr').fadeOut(200);
+            $('html, body').removeClass('j-noScroll');
+        }
+    });
+
+
+    $('.filtr-bottom__reset').on('click', function() {
+        $('.search-one__param input').prop('checked', false);
+    });
+
+    var swiper = new Swiper('.product-slider', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30
+    });
+
+    $('.category > li').each(function() {
+        if ( $(this).find('li').length > 0 ) {
+            $(this).prepend('<div class="j-submenu"></div>')
+        }
+    });
+
+    $('.j-submenu').on('click', function(event) {
+        event.stopPropagation();
+        $(this).parents('li').find('ul').slideToggle();
+    });
+
+    $('.tab-list__one').on('click', function() {
+        $('.tab-one, .tab-list__one').removeClass('active');
+
+        $(this).addClass('active');
+        idx = $(this).index();
+        $(this).parents('.tabs').find('.tab-one').eq(idx).addClass('active');
+    });
+
+    $('.products-list-one').on('click', function() {
+        $(this).find('.products-list-one__hidden').slideToggle();
+    });
+
+    $('.card-descr__order').on('click', function() {
+        $('#order').fadeIn();
+        $('html, body').addClass('j-noScroll');
+    });
+
+    $('.order-close').on('click', function() {
+        $('#order').fadeOut();
+        $('html, body').removeClass('j-noScroll');
+    });
+
 });
