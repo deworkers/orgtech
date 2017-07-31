@@ -112,7 +112,13 @@ $(document).ready(function() {
     });
 
     $('.head-city-one').on('click', function() {
+        $('.head-city-one').show();
         thisCity = $(this).data('city');
+        $('.head-city-one').each(function() {
+            if ( $(this).data('city') == thisCity ) {
+                $(this).hide();
+            }
+        });
         console.log(thisCity);
         $('.head-bottom-one').hide();
         $('.'+thisCity).show();
@@ -220,8 +226,8 @@ $(document).ready(function() {
         $(this).parents('.tabs').find('.tab-one').eq(idx).addClass('active');
     });
 
-    $('.products-list-one').on('click', function() {
-        $(this).find('.products-list-one__hidden').slideToggle();
+    $('.products-list-one__title').on('click', function() {
+        $(this).parents('.products-list-one').toggleClass('open').find('.products-list-one__hidden').slideToggle();
     });
 
     $('.card-descr__order').on('click', function() {

@@ -219,6 +219,10 @@ body {
     letter-spacing: 1px;
     color: #595959;
     font-weight: 700;
+
+    span {
+        font-weight: 400;
+    }
 }
 
 .head-phone-more {
@@ -337,7 +341,7 @@ body {
 
 .head-city {
     background: #f4f3f2;
-    padding: 30px 15px;
+    padding: 0px 15px 30px;
     display: none;
     position: absolute;
     z-index: 10;
@@ -347,13 +351,13 @@ body {
 
 .head-city-one {
     text-align: right;
-    margin-bottom: 25px;
+    margin-top: 25px;
 
-    &:last-child {
-        margin-bottom: 0;
+    &.hidden {
+        display: none;
     }
 
-    &:after {
+    /*&:after {
         content: "";
         .sprite(@arrow-sm);
         transform: scale(0.5);
@@ -362,7 +366,7 @@ body {
         position: absolute;
         top: 10px;
         right: 200px;
-    }
+    }*/
 }
 
 .head-city__phone {
@@ -381,10 +385,14 @@ body {
 
 .head-city__title {
     font-size: 14px;
-    font-weight: 700;
     color: #595959;
     line-height: 16px;
     letter-spacing: 1px;
+    font-weight: 700;
+
+    span {
+        font-weight: 400;
+    }
 }
 
 .main-top {
@@ -977,6 +985,37 @@ body {
 .card-tab__body {
     padding: 30px 15px;
     display: none;
+
+    table {
+        display: block;
+        border: none;
+
+        tr {
+            display: block;
+            padding: 0;
+            width: 100% !important;
+            border: none;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        td {
+            display: block;
+            font-size: 16px;
+            text-align: center;
+            padding: 10px;
+            border-color: #ddd;
+            margin-top: -1px;
+
+            ul {
+                text-align: left;
+
+                li {
+                    font-size: 16px !important;
+                }
+            }
+        }
+    }
 }
 
 .card-solution {
@@ -1722,14 +1761,29 @@ body {
     ul {
         padding-left: 20px;
     }
+
+    &.open {
+        .products-list-one__title {
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: scale(0.5);
+                .sprite(@close-blue);
+            }
+        }
+    }
+
+    .products-list-one__title {
+        margin-left: 80px;
+        font-size: 14px;
+        color: @color_link;
+        font-weight: 700;
+    }
 }
 
-.products-list-one__title {
-    margin-left: 80px;
-    font-size: 14px;
-    color: @color_link;
-    font-weight: 700;
-}
 
 .products-list-one__descr {
 }
