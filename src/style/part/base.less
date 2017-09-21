@@ -81,7 +81,7 @@ h1 {
 }
 
 h2 {
-    .head(18px, 20px, normal, @color_text);
+    .head(18px, 20px, normal, #000);
 }
 
 h3 {
@@ -151,7 +151,7 @@ ul li, ol li{
 #overlay {
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: ~'calc(100vh - 70px)';
     background: rgba(0,0,0,0.5);
     top: 70px;
     left: 0;
@@ -183,6 +183,18 @@ ul li, ol li{
 
 .modal--fz  {             // во весь экран
     width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    padding: 0;
+    display: none;
+    margin: 0;
+}
+
+.modal--client  {             // во весь экран
+    width: 100%;
+    height: ~'calc(100vh - 70px)';
+    overflow: auto;
     position: absolute;
     left: 0;
     top: 0px;

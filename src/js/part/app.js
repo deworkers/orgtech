@@ -100,6 +100,7 @@ $(document).ready(function() {
 
     $('.head-phone').on('click', function() {
         contactOpen();
+        $('.head-phone').toggleClass('open');
         $('.head-city').slideUp();
         $('.head-phone-more').removeClass('active');
     });
@@ -108,6 +109,7 @@ $(document).ready(function() {
         event.stopPropagation();
         $('.head-call').hide();
         $('.head-city').slideToggle();
+        $('.head-phone').removeClass('open');
         $('.head-phone-more').toggleClass('active');
     });
 
@@ -137,6 +139,18 @@ $(document).ready(function() {
         }
     });
 
+    
+    $('.about-more--left').on('click', function() {
+        $(this).prev('.about-hide').slideToggle();
+        $(this).toggleClass('active');
+
+        if ( $(this).hasClass('active') ) {
+            $(this).find('span').text('Скрыть');
+        } else {
+            $(this).find('span').text('Показать');
+        }
+    });
+
     var swiper = new Swiper('.project', {
         loop: true,
         nextButton: '.swiper-button-next',
@@ -156,8 +170,8 @@ $(document).ready(function() {
         touchRatio: 0.2,
         slideToClickedSlide: true
     });
-    galleryTop.params.control = galleryThumbs;
-    galleryThumbs.params.control = galleryTop;
+    //galleryTop.params.control = galleryThumbs;
+    //galleryThumbs.params.control = galleryTop;
 
 
     $('.card-tab__title').on('click', function() {
@@ -230,6 +244,10 @@ $(document).ready(function() {
         $(this).parents('.products-list-one').toggleClass('open').find('.products-list-one__hidden').slideToggle();
     });
 
+    $('.products-list-one__close').on('click', function() {
+        $(this).parents('.products-list-one').toggleClass('open').find('.products-list-one__hidden').slideToggle();
+    });
+
     $('.card-descr__order').on('click', function() {
         $('#order').fadeIn();
         $('html, body').addClass('j-noScroll');
@@ -239,5 +257,7 @@ $(document).ready(function() {
         $('#order').fadeOut();
         $('html, body').removeClass('j-noScroll');
     });
+
+    $("input[name='phone']").mask("+7(999) 999-99-99",{placeholder:"_"});
 
 });
