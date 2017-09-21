@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
     rigger = require('gulp-rigger'),
+    rename = require('gulp-rename'),
     cssmin = require('gulp-clean-css'),
     imagemin = require('gulp-imagemin'),
     spritesmith = require('gulp.spritesmith'),
@@ -31,7 +32,7 @@ var path = {
     src: { //Пути откуда брать исходники
         html:   'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
         ajax:   'src/ajax/*.php',
-        js:     'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
+        js:     'src/js/*.js',//В стилях и скриптах нам понадобятся только main файлы
         style:  'src/style/**/*.less',
         img:    'src/img/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
         tmp:    'src/tmp/**/*.*',
@@ -73,7 +74,9 @@ gulp.task('html:build', function () {
 gulp.task('js:build', function () {
     gulp.src(path.src.js) //Найдем наш main файл
         .pipe(rigger()) //Прогоним через rigger
+        .pipe(gulp.dest(path.build.js)) //выплевываем несжатые файлы
         .pipe(uglify()) //Сожмем наш js
+        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
         .pipe(reload({stream: true})); //И перезагрузим сервер
 });
@@ -131,16 +134,10 @@ gulp.task('sprite:build', function() {
         gulp.src('src/img/sprite/*.*') // путь, откуда берем картинки для спрайта
             .pipe(spritesmith({
                 imgName: 'sprite.png',
-                imgPath: '../img/sprite.png',
                 cssName: 'sprite.less',
                 cssFormat: 'less',
                 algorithm: 'binary-tree',
-                /*retinaSrcFilter: ['src/img/sprite/2x/*.*'],
-                retinaImgName: 'sprite@2x.png',
-                retinaImgPath: '../img/sprite@2x.png',
-                cssVarMap: function(sprite) {
-                    sprite.name =  sprite.name+'-2x'
-                }*/
+                imgPath: '../img/sprite.png'
             }));
 
     spriteData.img.pipe(gulp.dest('build/img/')); // путь, куда сохраняем картинку

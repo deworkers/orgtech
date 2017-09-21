@@ -100,6 +100,7 @@ $(document).ready(function() {
 
     $('.head-phone').on('click', function() {
         contactOpen();
+        $('.head-phone').toggleClass('open');
         $('.head-city').slideUp();
         $('.head-phone-more').removeClass('active');
     });
@@ -108,11 +109,18 @@ $(document).ready(function() {
         event.stopPropagation();
         $('.head-call').hide();
         $('.head-city').slideToggle();
+        $('.head-phone').removeClass('open');
         $('.head-phone-more').toggleClass('active');
     });
 
     $('.head-city-one').on('click', function() {
+        $('.head-city-one').show();
         thisCity = $(this).data('city');
+        $('.head-city-one').each(function() {
+            if ( $(this).data('city') == thisCity ) {
+                $(this).hide();
+            }
+        });
         console.log(thisCity);
         $('.head-bottom-one').hide();
         $('.'+thisCity).show();
@@ -131,6 +139,18 @@ $(document).ready(function() {
         }
     });
 
+    
+    $('.about-more--left').on('click', function() {
+        $(this).prev('.about-hide').slideToggle();
+        $(this).toggleClass('active');
+
+        if ( $(this).hasClass('active') ) {
+            $(this).find('span').text('Скрыть');
+        } else {
+            $(this).find('span').text('Показать');
+        }
+    });
+
     var swiper = new Swiper('.project', {
         loop: true,
         nextButton: '.swiper-button-next',
@@ -138,5 +158,106 @@ $(document).ready(function() {
         spaceBetween: 30
     });
 
+    var galleryTop = new Swiper('.gallery-top', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 10,
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 1,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        touchRatio: 0.2,
+        slideToClickedSlide: true
+    });
+    //galleryTop.params.control = galleryThumbs;
+    //galleryThumbs.params.control = galleryTop;
+
+
+    $('.card-tab__title').on('click', function() {
+        $(this).next('.card-tab__body').slideToggle();
+        $(this).toggleClass('active');
+    });
+
+    /*$('.recommend-more').on('click', function() {
+        $(this).hide();
+        $('.recommend-one.hidden').slideDown();
+    });*/
+
+    $('.search-one__title').on('click', function() {
+        $(this).next('').slideToggle();
+        $(this).toggleClass('active');
+    });
+
+    $('.open-filtr').on('click', function() {
+        event.preventDefault();
+        $('#overlay--top').fadeIn(200);
+        $('#filtr').fadeIn(400);
+        $('html, body').addClass('j-noScroll');
+    });
+
+    close.click(function() {
+        $('#overlay--top').fadeOut(200);
+        $('#filtr').fadeOut(200);
+        $('html, body').removeClass('j-noScroll');
+    });
+
+    $('#overlay--top').click(function(event) {
+        if ( $( event.target ).attr('id') == 'overlay--top' ) {
+            $(this).fadeOut(200);
+            $('#filtr').fadeOut(200);
+            $('html, body').removeClass('j-noScroll');
+        }
+    });
+
+
+    $('.filtr-bottom__reset').on('click', function() {
+        $('.search-one__param input').prop('checked', false);
+    });
+
+    var swiper = new Swiper('.product-slider', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30
+    });
+
+    $('.category > li').each(function() {
+        if ( $(this).find('li').length > 0 ) {
+            $(this).prepend('<div class="j-submenu"></div>')
+        }
+    });
+
+    $('.j-submenu').on('click', function(event) {
+        event.stopPropagation();
+        $(this).parents('li').find('ul').slideToggle();
+    });
+
+    $('.tab-list__one').on('click', function() {
+        $('.tab-one, .tab-list__one').removeClass('active');
+
+        $(this).addClass('active');
+        idx = $(this).index();
+        $(this).parents('.tabs').find('.tab-one').eq(idx).addClass('active');
+    });
+
+    $('.products-list-one__title').on('click', function() {
+        $(this).parents('.products-list-one').toggleClass('open').find('.products-list-one__hidden').slideToggle();
+    });
+
+    $('.products-list-one__close').on('click', function() {
+        $(this).parents('.products-list-one').toggleClass('open').find('.products-list-one__hidden').slideToggle();
+    });
+
+    $('.card-descr__order').on('click', function() {
+        $('#order').fadeIn();
+        $('html, body').addClass('j-noScroll');
+    });
+
+    $('.order-close').on('click', function() {
+        $('#order').fadeOut();
+        $('html, body').removeClass('j-noScroll');
+    });
+
+    $("input[name='phone']").mask("+7(999) 999-99-99",{placeholder:"_"});
 
 });
