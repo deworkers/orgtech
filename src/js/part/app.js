@@ -260,4 +260,30 @@ $(document).ready(function() {
 
     $("input[name='phone']").mask("+7(999) 999-99-99",{placeholder:"_"});
 
+    $('.hideblock').each(function() {
+        if ( !$(this).hasClass('active') ) {
+            $(this).append('<div class="hideblock-button">Скрыть</div>');
+        } else {
+            $(this).append('<div class="hideblock-button">Показать</div>');
+            $(this).find('.products-list-one').hide();
+        }
+    });
+
+    $('.hideblock-button').on('click', function() {
+        if (  $(this).parents('.hideblock').hasClass('active') ) {
+            $(this).text('Скрыть');
+            $(this).parents('.hideblock').toggleClass('active').find('.products-list-one').slideDown();
+        } else {
+            $(this).text('Показать');
+            $(this).parents('.hideblock').toggleClass('active').find('.products-list-one').slideUp();
+        }
+
+    });
+
+    var mainSlider = new Swiper('.main-top', {
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 5
+    });
+
 });
