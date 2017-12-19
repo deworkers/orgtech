@@ -91,6 +91,7 @@ $(document).ready(function() {
         spaceBetween: 5,
         nextButton: '.news-slider-next',
         prevButton: '.news-slider-prev',
+        autoHeight: true
     });
 
     var contactOpen = function() {
@@ -129,7 +130,7 @@ $(document).ready(function() {
     });
 
     $('.about-more').on('click', function() {
-        $('.about-hide').slideToggle();
+        $('.about-hide').toggleClass('active');
         $(this).toggleClass('active');
 
         if ( $(this).hasClass('active') ) {
@@ -155,7 +156,8 @@ $(document).ready(function() {
         loop: true,
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
-        spaceBetween: 30
+        spaceBetween: 30,
+        autoHeight: true
     });
 
     var galleryTop = new Swiper('.gallery-top', {

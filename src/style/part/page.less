@@ -416,6 +416,10 @@ iframe {
 
 .main-top {
     text-align: center;
+    overflow: hidden;
+    a {
+        text-decoration: none;
+    }
     img {
         width: 100%;
         display: block;
@@ -674,6 +678,32 @@ iframe {
     display: none;
 }
 
+.about .about-hide {
+    display: block !important;
+    height: 110px;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &.active {
+        height: auto;
+    }
+
+    &:after {
+        content: "";
+        width: 100%;
+        height: 20px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: -webkit-linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+        background: -o-linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+        background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+    }
+}
+
+
+
 
 .news-main {
 }
@@ -928,7 +958,8 @@ iframe {
 
     .swiper-slide {
         height: 260px;
-        background-size: cover;
+        background-repeat: no-repeat;
+        background-size: contain;
         background-position: 50%;
     }
 }
@@ -1901,7 +1932,7 @@ iframe {
         display: block;
         float: left;
         box-shadow: 0px 0px 5px 0 #cacaca;
-        width: 70px;
+        max-width: 70px;
         margin-right: 10px;
     }
 
@@ -1928,6 +1959,7 @@ iframe {
         font-size: 14px;
         color: @color_link;
         font-weight: 700;
+        padding-right: 30px;
     }
 
     &:last-child {
@@ -1938,7 +1970,7 @@ iframe {
 .products-list-one__close {
     display: block;
     position: absolute;
-    bottom: -20px;
+    bottom: 10px;
     right: 0;
     transform: scale(0.5);
     .sprite(@close-blue);
@@ -1952,7 +1984,7 @@ iframe {
     display: none;
 }
 
-#order {
+#order, #mail {
     position: fixed;
     top: 0;
     left: 0;
@@ -1975,6 +2007,7 @@ iframe {
     line-height: 25px;
     margin-bottom: 15px;
     font-weight: 700;
+    padding-right: 30px;
 }
 
 .order-line {
@@ -1996,11 +2029,21 @@ iframe {
         border: 1px solid #e2e2e2;
         outline: none;
         height: 70px;
+        padding: 5px;
     }
 
     p {
         font-size: 12px;
         margin-bottom: 0;
+    }
+
+    label.error {
+        color: #f00;
+        font-size: 13px;
+    }
+
+    input.error {
+        border-color: #f00;
     }
 }
 
@@ -2121,3 +2164,88 @@ a.searchpage-choose-list-item.selected { background: #e3e3e3; }
 .searchblock-form-input input { padding-right: 45px; height: @input-height_large; line-height: @input-height_large - 2; .radius(); box-shadow: inset 0 1px 1px @color_gray_light; }
 .searchblock-form-input input:focus { border-color: @color_gray_light; }
 .searchblock-form .button { width: 40px; position: absolute; top: 0; right: 0; border: 0; box-shadow: none; border-left: 1px solid @color_gray_light; background: transparent; padding: 0; }
+
+.counters {
+    position: absolute;
+}
+
+.form { padding: 20px 0 30px; max-width: 700px; }
+.form-line { padding: 0 0 15px; }
+.form-line-name, 
+.form-line-input {
+    label.error {
+        color: #f00;
+        font-size: 13px;
+    }
+
+    input.error {
+        border-color: #f00;
+    }
+ }
+.form-line-name { color: #595959; font-size: 14px; }
+.form-line-name-in { padding: 0 0 5px; }
+.form-line-input input,
+.form-line-input select,
+.form-line-input textarea {
+    box-sizing: border-box;
+    font: 16px 'PT Sans', sans-serif;
+    width: 100%;
+    height: 30px;
+    line-height: 28px;
+    margin: 0;
+    padding: 1px 10px;
+    background: #fff;
+    border: 1px solid #cacaca;
+    box-shadow: none;
+    color: #000;
+    vertical-align: middle;
+    outline: 0 none; 
+}
+
+.form-line-input textarea {
+    height: 90px;
+}
+
+.form-line-input {
+    input[type="submit"] {
+        box-sizing: border-box;
+        font: bold 18px 'PT Sans', sans-serif;
+        text-shadow: 0 1px #666;
+        width: auto;
+        height: 40px;
+        line-height: 38px;
+        margin: 0;
+        padding: 0 30px;
+        background: #f96806;
+        border: 0;
+        border-radius: 3px;
+        position: relative;
+        behavior: url(/scripts/PIE.htc);
+        box-shadow: 0 2px 5px 0 #cacaca;
+        color: #fff !important;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        cursor: pointer;
+        outline: 0 none;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+}
+
+.form-line_button { padding-top: 5px; padding-bottom: 0; 
+}
+
+.form-cols { margin: 0 -20px; font-size: 0; }
+.form-col { width: 50%; font-size: 16px; display: inline-block; vertical-align: middle; }
+.form-col-in { margin: 0 20px; }
+
+.form-line .check { position: absolute; top: .35em; left: 0 }
+.form-line .check-label { position: relative; padding: 0 0 10px 20px; display: block; cursor: pointer }
+.form-line .check-label label.error { position: absolute; bottom: -5px; left: 20px }
+
+.autocomplete-w1 { background:#fff; position:absolute; top:0px; left:0px; /* IE6 fix: */ _background:none; _margin:1px 0 0 0; width: 340px;}
+.autocomplete { border:1px solid #999; background:#FFF; cursor:default; width: 100% !important; text-align:left; max-height:350px; overflow:auto; /* IE6 specific: */ _height:350px; _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; }
+.autocomplete div { padding:2px 5px; white-space:nowrap; overflow:hidden; }
+.autocomplete strong { font-weight:normal; color:#3399FF; }
